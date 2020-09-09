@@ -23,7 +23,7 @@ import base64File from './base64File'
 export class GithubMediaStore implements MediaStore {
   accept = '*'
 
-  constructor(private githubClient: GithubClient) {
+  constructor(protected githubClient: GithubClient) {
     //
   }
 
