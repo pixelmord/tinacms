@@ -18,7 +18,7 @@ limitations under the License.
 
 import * as React from 'react'
 import { ImageRenderChildren } from './inline-image-field'
-import { Container } from './inline-image-upload'
+import { Container } from './dropzone-wrapper'
 
 interface NonEditableImageProps {
   src?: string

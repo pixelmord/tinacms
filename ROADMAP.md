@@ -23,6 +23,26 @@ perspective, and plan the next 6 week period.
 
 ## Cycles
 
+### Cycle 4: Nov 2nd to Dec 11th
+
+| Begins        | Ends           |
+| ------------- | -------------- |
+| November 2nd 2020 | December 11th 2020 |
+
+For this cycle, we don't have any specific features planned. We are dogfooding Tina by working on a flexible, blocks-based starter project with what we believe are the best practices for using Tina right now. We expect some improvements to come to Tina in the process, with a particular focus on:
+- Inline Editing
+- Using Tina with a componentized design system
+- Minimizing the impact of Tina on page weight when not editing
+
+### Cycle 3: Sept 7th to October 16th
+
+| Begins        | Ends           |
+| ------------- | -------------- |
+| September 7th 2020 | October 16th 2020 |
+
+This cycle we are working on adding a true media manager to TinaCMS as detailed in [RFC 0003](https://github.com/tinacms/rfcs/blob/master/0003-media-api.md). Media management is a fundamental feature of a CMS. Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles. Currently media changes are handled solely through image fields. By clicking on the field, the editors can upload new images from their local filesystem. There is a 'store' uploading and handling previously added images under the hood, but editors have no way of interacting with that store.
+
+
 ### Cycle 2: July 13th to August 21st
 
 | Begins        | Ends           |

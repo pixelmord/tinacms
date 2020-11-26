@@ -15,7 +15,7 @@ import matter from 'gray-matter'
 import styled from 'styled-components'
 import { useMarkdownForm } from 'next-tinacms-markdown'
 import ReactMarkdown from 'react-markdown'
-import { useCMS } from 'tinacms'
+import { useCMS, usePlugin } from 'tinacms'
 import {
   InlineForm,
   InlineText,
@@ -31,6 +31,7 @@ import Layout from '../components/Layout'
 function Info(props) {
   const cms = useCMS()
   const [data, form] = useMarkdownForm(props.markdownFile, formOptions)
+  usePlugin(form)
 
   return (
     <InlineForm form={form}>
@@ -101,7 +102,16 @@ function Info(props) {
             >
               {props => <img src={props.src} />}
             </StyledInlineImage>
-            <InlineWysiwyg name="markdownBody">
+            <InlineWysiwyg
+              name="markdownBody"
+              sticky="62px"
+              imageProps={{
+                uploadDir: () => '/public/images',
+                parse: media => {
+                  return `/images/${media.filename}`
+                },
+              }}
+            >
               <ReactMarkdown>{data.markdownBody}</ReactMarkdown>
             </InlineWysiwyg>
           </div>
@@ -139,9 +149,20 @@ const formOptions = {
   fields: [
     { label: 'Name', name: 'frontmatter.name', component: 'text' },
     {
+      name: 'frontmatter.image',
+      component: 'image',
+      uploadDir: () => '/public/images/',
+      parse: media => media.id,
+      clearable: true,
+    },
+    {
       name: 'markdownBody',
       label: 'Home Page Content',
       component: 'markdown',
+      imageProps: {
+        uploadDir: () => '/public/images',
+        parse: media => `/images/${media.filename}`,
+      },
     },
     { label: 'color', name: 'frontmatter.color', component: 'color' },
     {

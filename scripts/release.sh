@@ -3,6 +3,19 @@
 # Terminate after the first line that fails (returns nonzero exit code)
 set -e
 
+source $(dirname $0)/require_clean_work_tree.sh
+
+# 0.1. Confirm Action
+read -p "Create a new release? Type the word 'release' to confirm: "
+if [[ ! $REPLY =~ ^release$ ]]
+then
+  echo "Release canceled."
+  exit 1
+fi
+
+#0.2. Ensure no uncommitted changes
+require_clean_work_tree
+
 # 1. Update Matser
 git checkout master
 git pull
@@ -24,7 +37,8 @@ lerna version \
   --allow-branch latest \
   --create-release github \
   -m "chore(publish): latest" \
-  --ignore-changes '**/*.md' '**/*.test.tsx?' '**/package-lock.json' '**/tsconfig.json'A
+  --ignore-changes '**/*.md' '**/*.test.tsx?' '**/package-lock.json' '**/tsconfig.json' \
+  --no-granular-pathspec
 
 # 5. Publish to NPM
 lerna publish from-package --yes

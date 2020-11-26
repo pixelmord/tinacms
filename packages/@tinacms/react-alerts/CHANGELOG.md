@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+**Note:** Version bump only for package @tinacms/react-alerts
+
+
+
+
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+**Note:** Version bump only for package @tinacms/react-alerts
+
+
+
+
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+**Note:** Version bump only for package @tinacms/react-alerts
+
+
+
+
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+
+### Bug Fixes
+
+* **@tinacms/react-alerts:** increase z-index ([94d67bb](https://github.com/tinacms/tinacms/commit/94d67bbb67588d08a6e926d70b1d3f55a34bc8bf)), closes [#1503](https://github.com/tinacms/tinacms/issues/1503) [#1055](https://github.com/tinacms/tinacms/issues/1055)
+
+
+
+
+
 # [0.29.0](https://github.com/tinacms/tinacms/compare/v0.28.0...v0.29.0) (2020-08-25)
 
 **Note:** Version bump only for package @tinacms/react-alerts

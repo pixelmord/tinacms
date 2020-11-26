@@ -30,7 +30,8 @@ import { MediaList, Media } from '@tinacms/core'
 import path from 'path'
 import { Button } from '@tinacms/styles'
 import { useDropzone } from 'react-dropzone'
-import { MediaItem, Breadcrumb, PageLinks } from './index'
+import { MediaItem, Breadcrumb, MediaPaginatorPlugin } from './index'
+import { LoadingDots } from '@tinacms/react-forms'
 
 export interface MediaRequest {
   limit?: number
@@ -67,12 +68,22 @@ export function MediaManager() {
   )
 }
 
+type MediaListState = 'loading' | 'loaded' | 'error' | 'not-configured'
+
 export function MediaPicker({
   allowDelete,
   onSelect,
   close,
   ...props
 }: MediaRequest) {
+  const cms = useCMS()
+  const Paginator = cms.plugins
+    .getType('media:ui')
+    .find('paginator') as MediaPaginatorPlugin
+  const [listState, setListState] = useState<MediaListState>(() => {
+    if (cms.media.isConfigured) return 'loading'
+    return 'not-configured'
+  })
   const [directory, setDirectory] = useState<string | undefined>(
     props.directory
   )
@@ -84,11 +95,20 @@ export function MediaPicker({
     items: [],
     totalCount: 0,
   })
-  const cms = useCMS()
 
   useEffect(() => {
     function loadMedia() {
-      cms.media.list({ offset, limit, directory }).then(setList)
+      setListState('loading')
+      cms.media
+        .list({ offset, limit, directory })
+        .then(list => {
+          setList(list)
+          setListState('loaded')
+        })
+        .catch(e => {
+          console.error(e)
+          setListState('error')
+        })
     }
 
     loadMedia()
@@ -98,8 +118,6 @@ export function MediaPicker({
       loadMedia
     )
   }, [offset, limit, directory])
-
-  if (!list) return <div>Loading...</div>
 
   const onClickMediaItem = (item: Media) => {
     if (item.type === 'dir') {
@@ -126,17 +144,25 @@ export function MediaPicker({
     }
   }
 
+  const [uploading, setUploading] = useState(false)
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/*',
 
-    onDrop: async ([file]) => {
-      //@ts-ignore
-      await cms.media.persist([
-        {
-          directory: directory || '/',
-          file,
-        },
-      ])
+    onDrop: async files => {
+      try {
+        setUploading(true)
+        await cms.media.persist(
+          files.map(file => {
+            return {
+              directory: directory || '/',
+              file,
+            }
+          })
+        )
+      } catch {
+        // TODO: Events get dispatched already. Does anything else need to happen?
+      }
+      setUploading(false)
     },
   })
 
@@ -153,18 +179,34 @@ export function MediaPicker({
 
   useEffect(disableScrollBody, [])
 
+  if (listState === 'loading') {
+    return <LoadingMediaList />
+  }
+
+  if (listState === 'not-configured') {
+    return <DocsLink title="Please Set up a Media Store" />
+  }
+
+  if (listState === 'error') {
+    return <DocsLink title="Failed to Load Media" />
+  }
+
   return (
     <MediaPickerWrap>
       <Header>
         <Breadcrumb directory={directory} setDirectory={setDirectory} />
-        <Button primary onClick={onClick}>
-          Upload
-        </Button>
+        <UploadButton onClick={onClick} uploading={uploading} />
       </Header>
       <List {...rootProps} dragActive={isDragActive}>
         <input {...getInputProps()} />
+
+        {listState === 'loaded' && list.items.length === 0 && (
+          <EmptyMediaList />
+        )}
+
         {list.items.map((item: Media) => (
           <MediaItem
+            key={item.id}
             item={item}
             onClick={onClickMediaItem}
             onSelect={selectMediaItem}
@@ -173,14 +215,42 @@ export function MediaPicker({
         ))}
       </List>
 
-      <PageLinks list={list} setOffset={setOffset} />
+      <Paginator.Component list={list} setOffset={setOffset} />
     </MediaPickerWrap>
   )
 }
 
+const UploadButton = ({ onClick, uploading }: any) => {
+  return (
+    <Button
+      style={{ minWidth: '5.3rem' }}
+      primary
+      busy={uploading}
+      onClick={onClick}
+    >
+      {uploading ? <LoadingDots /> : 'Upload'}
+    </Button>
+  )
+}
+
+const LoadingMediaList = styled(props => {
+  return (
+    <div {...props}>
+      <LoadingDots color={'var(--tina-color-primary)'} />
+    </div>
+  )
+})`
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
 const MediaPickerWrap = styled.div`
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   color: var(--tina-color-grey-9);
   display: flex;
   flex-direction: column;
@@ -224,9 +294,10 @@ interface ListProps {
 const List = styled.ul<ListProps>`
   display: flex;
   flex-direction: column;
-  padding-bottom: 2rem;
+  padding: 0 0 2rem 0;
+  margin: 0;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 
   ${p =>
@@ -235,4 +306,40 @@ const List = styled.ul<ListProps>`
       border: 2px solid var(--tina-color-primary);
       border-radius: var(--tina-radius-small);
     `}
+`
+
+const EmptyMediaList = styled(props => {
+  return <div {...props}>Drag and Drop assets here</div>
+})`
+  font-size: 1.5rem;
+  opacity: 50%;
+  padding: 3rem;
+  text-align: center;
+`
+
+const DocsLink = styled(({ title, ...props }) => {
+  return (
+    <div {...props}>
+      <h2>{title}</h2>
+      <div>
+        {' '}
+        Visit the{' '}
+        <a href="https://tinacms.org/docs/media" rel="noreferrer noopener">
+          docs
+        </a>{' '}
+        to learn more about setting up the Media Manager for your CMS.
+      </div>
+    </div>
+  )
+})`
+  height: 75%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  a {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+  }
 `

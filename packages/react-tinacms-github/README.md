@@ -123,11 +123,13 @@ const cms = new TinaCMS({
   apis: {
     github: githubClient // equivalent to cms.registerApi('github', githubClient)
   },
-  media: {
-    store: mediaStore
-  }
+  media: mediaStore
 })
 ```
+
+### Image formats for preview
+
+Currently, the media manager and GitHub media store only supports previews for image files of the following formats: '.jpg', '.jpeg', '.png', '.webp', '.svg'. Other file types will show a file icon instead of an image preview in the media manager. 
 
 ## Authentication
 

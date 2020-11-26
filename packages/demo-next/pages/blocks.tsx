@@ -29,6 +29,7 @@ import {
   useInlineForm,
   InlineTextarea,
 } from 'react-tinacms-inline'
+import { InlineWysiwyg } from 'react-tinacms-editor'
 
 import Layout from '../components/Layout'
 
@@ -48,7 +49,7 @@ export default function BlocksExample({ jsonFile }) {
           </h1>
           <InlineImage
             name="hero_image"
-            parse={filename => `/images/${filename}`}
+            parse={media => media.id.replace('public/', '')}
             uploadDir={() => '/public/images/'}
           >
             {props => <ChildImage src={data.hero_image} {...props} />}
@@ -98,9 +99,9 @@ const cta_template: BlockTemplate = {
   ],
 }
 
-function CallToActionBlock({ index, data, style }) {
+function CallToActionBlock({ index, data }) {
   return (
-    <div className="block" style={style}>
+    <div className="block">
       <BlocksControls index={index}>
         <button
           onClick={() => window.open(data.url, '_blank')}
@@ -158,7 +159,7 @@ function ImageBlock({ index, data }) {
       <BlocksControls index={index}>
         <InlineImage
           name="src"
-          parse={filename => `/images/${filename}`}
+          parse={media => media.id.replace('public/', '')}
           uploadDir={() => '/public/images/'}
           focusRing={false}
         />
@@ -184,6 +185,14 @@ const image_template: BlockTemplate = {
   fields: [{ name: 'alt', label: 'Image Alt', component: 'text' }],
 }
 
+const wysi_template: BlockTemplate = {
+  label: 'Content',
+  defaultItem: {
+    _template: 'wysiwyg',
+    content: '# Hello World',
+  },
+}
+
 // Testing the block styled component override
 
 const StyledBlockText = styled(InlineTextarea)`
@@ -207,6 +216,12 @@ const PAGE_BUILDER_BLOCKS = {
   image: {
     Component: ImageBlock,
     template: image_template,
+  },
+  wysiwyg: {
+    Component: ({ data }) => {
+      return <InlineWysiwyg name="content">{data.content}</InlineWysiwyg>
+    },
+    template: wysi_template,
   },
 }
 

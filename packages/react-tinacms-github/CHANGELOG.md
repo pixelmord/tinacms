@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+
+### Bug Fixes
+
+* **@tinacms/react-core:** useForm refreshes data on github branch change ([d16ef76](https://github.com/tinacms/tinacms/commit/d16ef762d75d2b7845049357431c125ed9ce55ff))
+* **react-tinacms-github:** only send branchchange event when branch actually changes ([6580c8a](https://github.com/tinacms/tinacms/commit/6580c8afa247e3d6a1beb9d7e4967b45c130fa1e))
+
+
+
+
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+**Note:** Version bump only for package react-tinacms-github
+
+
+
+
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **react-tinacms-github:** dispatch event on delete failurecloses [#1493](https://github.com/tinacms/tinacms/issues/1493) ([12d92dc](https://github.com/tinacms/tinacms/commit/12d92dc2220ec326e1e3ec7a59a8d6ab96e9f988))
+
+
+
+
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+
+### Features
+
+* **react-tinacms-github:** add GithubClient#commit(branch, repo?) ([d62bc3b](https://github.com/tinacms/tinacms/commit/d62bc3bc5cd5dd06935ec8237005039eb817bfee))
+* **react-tinacms-github:** GithubMediaStore implements MediaStore#delete ([1c5ded9](https://github.com/tinacms/tinacms/commit/1c5ded9334749ac7905068546eec397a886a9063))
+* **react-tinacms-github:** GithubMediaStore implements MediaStore#list ([a963189](https://github.com/tinacms/tinacms/commit/a963189740e9ded9d753fb5bec95a7011350b3a7))
+
+
+
+
+
 # [0.30.0](https://github.com/tinacms/tinacms/compare/v0.29.0...v0.30.0) (2020-09-10)
 
 

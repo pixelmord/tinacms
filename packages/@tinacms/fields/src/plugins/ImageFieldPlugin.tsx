@@ -27,8 +27,8 @@ import { useState, useEffect } from 'react'
 interface ImageProps {
   path: string
   previewSrc?: MediaStore['previewSrc']
-  uploadDir?(form: any): string
-  clearable?: boolean // defaults to true
+  uploadDir?(formValues: any): string
+  clearable?: boolean
 }
 
 export function usePreviewSrc(
@@ -81,7 +81,7 @@ export const ImageField = wrapFieldsWithMeta<InputProps, ImageProps>(props => {
 
   let onClear: any
   if (props.field.clearable) {
-    onClear = () => onChange()
+    onClear = () => props.input.onChange('')
   }
 
   function onChange(media?: Media) {
@@ -99,7 +99,10 @@ export const ImageField = wrapFieldsWithMeta<InputProps, ImageProps>(props => {
       previewSrc={src}
       loading={srcIsLoading}
       onClick={() => {
+        const directory = uploadDir(props.form.getState().values)
         cms.media.open({
+          allowDelete: true,
+          directory,
           onSelect: onChange,
         })
       }}

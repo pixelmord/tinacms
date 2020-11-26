@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+**Note:** Version bump only for package next-tinacms-github
+
+
+
+
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+**Note:** Version bump only for package next-tinacms-github
+
+
+
+
+
+## [0.32.1](https://github.com/tinacms/tinacms/compare/v0.32.0...v0.32.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **next-tinacms-github:** correct typedef path ([2ac9a52](https://github.com/tinacms/tinacms/commit/2ac9a528659eb7129c40fa9344df1482ceb0c2fc))
+
+
+
+
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+**Note:** Version bump only for package next-tinacms-github
+
+
+
+
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+
+### Features
+
+* **next-tinacms-github:** Add NextGithubMediaStore ([357dcd8](https://github.com/tinacms/tinacms/commit/357dcd85a12e1687fa03104ada2e4a1ba3bba49b))
+
+
+
+
+
 # [0.29.0](https://github.com/tinacms/tinacms/compare/v0.28.0...v0.29.0) (2020-08-25)
 
 **Note:** Version bump only for package next-tinacms-github

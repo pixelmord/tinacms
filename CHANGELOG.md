@@ -3,6 +3,135 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+### Bug Fixes
+
+- **@tinacms/fields:** input doesn't unset all styles ([8386e4f](https://github.com/tinacms/tinacms/commit/8386e4f5a0cb1701c0a807d62f40c7144d0b3561))
+- **@tinacms/react-core:** useForm refreshes data on github branch change ([d16ef76](https://github.com/tinacms/tinacms/commit/d16ef762d75d2b7845049357431c125ed9ce55ff))
+- **react-tinacms-github:** only send branchchange event when branch actually changes ([6580c8a](https://github.com/tinacms/tinacms/commit/6580c8afa247e3d6a1beb9d7e4967b45c130fa1e))
+
+### Features
+
+- **@tinacms/react-core:** useForm returns its loading state ([f287275](https://github.com/tinacms/tinacms/commit/f28727510520d44eee82fa1c1a0f7fb466ec2cbd))
+- **tinacms:** media manager dropzone accepts multiple files ([179eec6](https://github.com/tinacms/tinacms/commit/179eec60ff25366d10e2657784dab32a1b900ea1))
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+### Bug Fixes
+
+- **@tinacms/core:** unsubscribe from events when replacing api ([5ad8dee](https://github.com/tinacms/tinacms/commit/5ad8dee27eddd81b347baeb033f366c443471186))
+- **@tinacms/fields:** onClear function clears the input ([73cd850](https://github.com/tinacms/tinacms/commit/73cd850df61ca5c257cd4a03d0ec01de55d45bab))
+- **react-tinacms-inline:** better control InlineBlocks rerenders ([611fc70](https://github.com/tinacms/tinacms/commit/611fc70eaba95168db9531f35d283d69dfe56e05))
+- **react-tinacms-inline:** stop focus event bubble before returning early ([698e0b5](https://github.com/tinacms/tinacms/commit/698e0b5d1573087068ed5517d22a7f3cede5ac74))
+- **tinacms:** remove yarn.lock ([d304dd5](https://github.com/tinacms/tinacms/commit/d304dd5112d135d3a2abd57925ad5def1cfae76f))
+
+### Features
+
+- **@tinacms/fields/toggle:** add optional true/false labels ([850d875](https://github.com/tinacms/tinacms/commit/850d87518cab21806f949b5f14f2658da271dd92))
+- **react-tinacms-editor:** InlineWysiwyg only renders ProseMirror for focused editor ([24a3372](https://github.com/tinacms/tinacms/commit/24a3372e83dd51faad0fa0fa480a716ab140c7b8))
+- **react-tinacms-inline:** Export SettingsModal ([ba5e03e](https://github.com/tinacms/tinacms/commit/ba5e03e8403d52b0b9ffcc068af7e3cbf845cfa6))
+- **react-tinacms-inline:** FocusRing accepts render-child ([e1cc04c](https://github.com/tinacms/tinacms/commit/e1cc04c76898a800e2a792ba210e305bddbc9771))
+- **react-tinacms-inline:** InlineGroup field names are relative ([57bcb3d](https://github.com/tinacms/tinacms/commit/57bcb3d2f70deec3f96437054d678b2551a559e6))
+- **tinacms:** expose plugin handle for media pagination ([4b4345b](https://github.com/tinacms/tinacms/commit/4b4345bc2047de88a4d0473ad2e4674182972f0b))
+
+### Performance Improvements
+
+- **react-tinacms-inline:** don't render block menu when block not active ([2b26b8a](https://github.com/tinacms/tinacms/commit/2b26b8a5c7a64b64e10f4faebc8712c0832218a5))
+
+## [0.32.1](https://github.com/tinacms/tinacms/compare/v0.32.0...v0.32.1) (2020-10-29)
+
+### Bug Fixes
+
+- **next-tinacms-github:** correct typedef path ([2ac9a52](https://github.com/tinacms/tinacms/commit/2ac9a528659eb7129c40fa9344df1482ceb0c2fc))
+- **next-tinacms-github:** fix build artifacts ([771c03f](https://github.com/tinacms/tinacms/commit/771c03faf3d7e498842c943b8c063dc9c3bbee9f))
+- **react-tinacms-editor:** correct typedef path ([064e5fe](https://github.com/tinacms/tinacms/commit/064e5fe33365a4daddbedcfe6505ac62d6185d38))
+- **react-tinacms-editor:** fixes menu jumping to top on scroll ([47fb08f](https://github.com/tinacms/tinacms/commit/47fb08fe8ef1a592ba5384c3f6d37f8227cec46f))
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+### Bug Fixes
+
+- **@tinacms/core:** cms.media.open accepts the allowDelete prop ([9364732](https://github.com/tinacms/tinacms/commit/9364732f80baf29dabaf4f2a315c8a04b5ac5dc2))
+- **@tinacms/fields:** image field allows media to be deleted from media manager ([7dfbb5e](https://github.com/tinacms/tinacms/commit/7dfbb5eb0a551c429ec2a5f8564b1bd626cd893f))
+- **gatsby-tinacms-json:** JsonCreator commits files after writing ([a252c13](https://github.com/tinacms/tinacms/commit/a252c1389b2b93743c4f8ee8d4abe8fabbd6dd56))
+- **gatsby-tinacms-remark:** RemarkCreator commits files after writing ([2b8780c](https://github.com/tinacms/tinacms/commit/2b8780cb0050aaeef2add51b26f96f36680750ba))
+- **react-tinacms-github:** dispatch event on delete failurecloses [#1493](https://github.com/tinacms/tinacms/issues/1493) ([12d92dc](https://github.com/tinacms/tinacms/commit/12d92dc2220ec326e1e3ec7a59a8d6ab96e9f988))
+- **react-tinacms-inline:** empty inline img to click/drag ([c879441](https://github.com/tinacms/tinacms/commit/c879441541a955d3e3d33c4f30c35a2b8cfbf92a))
+- **react-tinacms-inline:** field focus is not lost when editing settings ([8a078b4](https://github.com/tinacms/tinacms/commit/8a078b4f9b5138c7821f859511cc53d618b93366))
+- **react-tinacms-inline:** inline image field allows media to be deleted from media manager ([352284f](https://github.com/tinacms/tinacms/commit/352284f8fdeb13b145ce54d0b3359a7076353284))
+- **react-tinacms-inline:** some fields were mis-handling focus ([5d7318c](https://github.com/tinacms/tinacms/commit/5d7318c0ccdfe89709f2e8bc7d1c8f8d3a115019)), closes [#1516](https://github.com/tinacms/tinacms/issues/1516)
+- **react-tinacms-inline:** uploadDir passes formValues ([99de78a](https://github.com/tinacms/tinacms/commit/99de78acd9768358fc2b43ba0f52d63b07db9988))
+- **tinacms:** media manager upload button is busy while uploading ([3ab978c](https://github.com/tinacms/tinacms/commit/3ab978c43a11ba64f9db2122e94431f48d1b93c3))
+
+### Features
+
+- **@tinacms/react-core:** useCMSEvent makes subscribing to events easier ([2a276bf](https://github.com/tinacms/tinacms/commit/2a276bf531b4b863cce4740bde18f31d8be3289f))
+- **react-tinacms-editor:** image directory prop --> uploadDir func ([67fc8d9](https://github.com/tinacms/tinacms/commit/67fc8d97befbea7e08751d5625103d8d3553046d))
+- **react-tinacms-editor:** markdown & html fields accept image props ([06d92e1](https://github.com/tinacms/tinacms/commit/06d92e138365bd73cae2daa20d8a116d7da6f4e0))
+- **react-tinacms-editor:** media mgr opens from uploadDir ([7e1b133](https://github.com/tinacms/tinacms/commit/7e1b1330d8fe777469d13fe65f43c75259c9e288))
+- **react-tinacms-editor:** parse accepts media object ([f6cf123](https://github.com/tinacms/tinacms/commit/f6cf123039669c477aef6176cdc4187b80eaf19d))
+- **react-tinacms-editor:** wysiwyg menu opens media mgr ([026e633](https://github.com/tinacms/tinacms/commit/026e633d97d5462f4d020ce87ca15735c3c08cc7))
+- **react-tinacms-inline:** block components are given their name ([8d42e9a](https://github.com/tinacms/tinacms/commit/8d42e9abbfb98bd50bd7dc1913fa3d8bc799972c)), closes [#1536](https://github.com/tinacms/tinacms/issues/1536)
+
+### Reverts
+
+- Revert "chore(react-tinacms-editor): mediaDir not optional" ([af20d84](https://github.com/tinacms/tinacms/commit/af20d849d11da5c93b453b8a63f9e6d9bee92363))
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+### Bug Fixes
+
+- **@tinacms/forms:** catch errors after submit ([2550a81](https://github.com/tinacms/tinacms/commit/2550a816ca7c4e99ea4965a179431510a9ca333f))
+- missing key names ([798ed84](https://github.com/tinacms/tinacms/commit/798ed847b327ba2fe5cadf8be9a263c2e04b7220))
+- svg attribute names ([7e06179](https://github.com/tinacms/tinacms/commit/7e06179fb1c54e04e286af946a618513fdeca19d))
+- **@tinacms/forms:** the Form#fields array is now optional ([e3d71bf](https://github.com/tinacms/tinacms/commit/e3d71bf426e0d8e40076fc1e161350f9fe469543))
+- **@tinacms/media:** deprecated since these interfaces were graduated to core ([39f1a72](https://github.com/tinacms/tinacms/commit/39f1a729a112fbab24af4c1e319cdc94867325aa))
+- **@tinacms/react-alerts:** increase z-index ([94d67bb](https://github.com/tinacms/tinacms/commit/94d67bbb67588d08a6e926d70b1d3f55a34bc8bf)), closes [#1503](https://github.com/tinacms/tinacms/issues/1503) [#1055](https://github.com/tinacms/tinacms/issues/1055)
+- **@tinacms/react-screens:** ModalBody is padded ([3df3c55](https://github.com/tinacms/tinacms/commit/3df3c5545072840c8f1be58ebf09535a6f86197d))
+
+### Features
+
+- **@tinacms/alerts:** events can be mapped to alerts automatically ([b96e8b9](https://github.com/tinacms/tinacms/commit/b96e8b9624f7afc53fc87ebdf5af08465fb419cd))
+- **@tinacms/api-git:** GET /:relPath returns content list for directories ([c613b20](https://github.com/tinacms/tinacms/commit/c613b208b6387f5e2e31c70dd1bc747dd6ddb491))
+- **@tinacms/api-git:** the GET /:relPath endpoint returns contents of directories ([9fa7bf8](https://github.com/tinacms/tinacms/commit/9fa7bf8c59a3cba99238138860a9bc2d52dee5d5))
+- **@tinacms/core:** add cms.media.open top make showing the media manager easier ([eea3081](https://github.com/tinacms/tinacms/commit/eea3081ce8ad65b773b6843d60604bb4cd389576))
+- **@tinacms/core:** cms.media async methods dispatch events ([9196bdf](https://github.com/tinacms/tinacms/commit/9196bdff6723f64e18426f90208837bfb1a93ec1))
+- **@tinacms/core:** MediaStore#previewSrc accepts fieldPath and formValues ([e2bf27b](https://github.com/tinacms/tinacms/commit/e2bf27b436b6fc6b5e0b359142fed352c10fb2e0))
+- **@tinacms/core:** promoted @tinacms/media classes to core ([5288dc1](https://github.com/tinacms/tinacms/commit/5288dc175db068a2b3cf5800bee66aa180369d92))
+- **@tinacms/core:** the MediaStore interface has a delete method ([4c1cf5a](https://github.com/tinacms/tinacms/commit/4c1cf5af1b2b10143bf5c2aa4858b108507b3028))
+- **@tinacms/events:** EventBus#subscribe can accept an array of event names ([63ef4db](https://github.com/tinacms/tinacms/commit/63ef4dbd5b17ccbae655b4d9f4962d08b288467f))
+- **@tinacms/fields:** clicking on ImageField opens the media picker ui ([7bb8fdb](https://github.com/tinacms/tinacms/commit/7bb8fdb91f482ab5ec307bbffdbc31f4fcc16e08))
+- **@tinacms/fields:** ImageFieldPlugin matches new MediaStore#previewSrc api ([76e5b04](https://github.com/tinacms/tinacms/commit/76e5b04151582087ec6538ebadf65fe6ad2ca5b7))
+- **@tinacms/fields:** ImageUpload parse returns the whole media object ([94ee917](https://github.com/tinacms/tinacms/commit/94ee917e19061828ddbbb857dc1513eb61da49f5)), closes [#1453](https://github.com/tinacms/tinacms/issues/1453)
+- **@tinacms/fields:** the uploadDir function is now optional for image fields ([6095caf](https://github.com/tinacms/tinacms/commit/6095caf5355c811f6bbb9cdd2a7e640b82ae4735))
+- **@tinacms/git-client:** GitMediaStore implements delete ([6b6efdb](https://github.com/tinacms/tinacms/commit/6b6efdbb8bd1c72cd5a6045bb832c19b6c105f3c))
+- **@tinacms/git-client:** the GitMediaStore implements list ([26ceadd](https://github.com/tinacms/tinacms/commit/26ceadd7b67fe0abf0085f647fad454e274f4c5b))
+- **@tinacms/icons:** adds media mgr folder & file icons ([81f1191](https://github.com/tinacms/tinacms/commit/81f1191886088288b71a957c4c984983eaa0dfdd))
+- **@tinacms/media:** add optional previewSrc to Media interface ([664701e](https://github.com/tinacms/tinacms/commit/664701e912f11c554f7852eed608f28f3dafd00e))
+- **@tinacms/media:** added id property to Media interface ([95ce72c](https://github.com/tinacms/tinacms/commit/95ce72ca76c69d4838efdef0cc196957d9107ff6))
+- **@tinacms/media:** cms.media has all of the MediaStore methods ([97b080b](https://github.com/tinacms/tinacms/commit/97b080b90f246f312aefc11d396ec2cde207ef36)), closes [#1458](https://github.com/tinacms/tinacms/issues/1458)
+- **@tinacms/media:** cms.media has all of the MediaStore methods ([6109f74](https://github.com/tinacms/tinacms/commit/6109f74b41c315b4800a7764e26b92e3f61f1197)), closes [#1458](https://github.com/tinacms/tinacms/issues/1458)
+- **@tinacms/media:** The media in the store can be listed ([8704c29](https://github.com/tinacms/tinacms/commit/8704c290d6161606fb8dae661714dd64d720c686)), closes [#1451](https://github.com/tinacms/tinacms/issues/1451)
+- **@tinacms/media:** the Media interface now has a 'type' prop that can be 'file' or 'dir' ([1a867cf](https://github.com/tinacms/tinacms/commit/1a867cfb53b5e6accbdc5e63a41c401fee2ed2d7))
+- **next-tinacms-github:** Add NextGithubMediaStore ([357dcd8](https://github.com/tinacms/tinacms/commit/357dcd85a12e1687fa03104ada2e4a1ba3bba49b))
+- **react-tinacms-github:** add GithubClient#commit(branch, repo?) ([d62bc3b](https://github.com/tinacms/tinacms/commit/d62bc3bc5cd5dd06935ec8237005039eb817bfee))
+- **react-tinacms-github:** GithubMediaStore implements MediaStore#delete ([1c5ded9](https://github.com/tinacms/tinacms/commit/1c5ded9334749ac7905068546eec397a886a9063))
+- **react-tinacms-github:** GithubMediaStore implements MediaStore#list ([a963189](https://github.com/tinacms/tinacms/commit/a963189740e9ded9d753fb5bec95a7011350b3a7))
+- **react-tinacms-inline:** adds inline image style extension ([f4348e5](https://github.com/tinacms/tinacms/commit/f4348e583f0ec794b8b45483cd8456ab4e9160a2))
+- **react-tinacms-inline:** image children only receive src ([9b48aa6](https://github.com/tinacms/tinacms/commit/9b48aa68874fdfe9ce567f47b5945a9365c888aa))
+- **react-tinacms-inline:** inline img accepts alt ([e576838](https://github.com/tinacms/tinacms/commit/e5768385f878418353fa1c108632290e4c3f8c1a))
+- **react-tinacms-inline:** InlineField accepts parse and format functions ([8d62b8e](https://github.com/tinacms/tinacms/commit/8d62b8e65cae511118c16a4f4427672b0812bcd9))
+- **react-tinacms-inline:** InlineImage parse accepts a Media rather then a string ([3be3e16](https://github.com/tinacms/tinacms/commit/3be3e166b83e1ba60a041898c9b0165310cbb623))
+- **react-tinacms-inline:** InlineImageField#previewSrc matches MediaStore API ([aeb0cd5](https://github.com/tinacms/tinacms/commit/aeb0cd5f5a717f035074e1406556b621c5e874f3))
+- **react-tinacms-inline:** uploadDir on InlineImageField is now optional ([4259804](https://github.com/tinacms/tinacms/commit/425980478046e50620ce2b6441b4db68d1e0223c))
+- **react-tinacms-strapi:** the StrapiMediaStore implements MediaStore#delete ([157d1fc](https://github.com/tinacms/tinacms/commit/157d1fcc7f86e5a1064875d68cad743cb4c1a08d))
+- **react-tinacms-strapi:** the StrapiMediaStore now implements MediaStore#list ([d851296](https://github.com/tinacms/tinacms/commit/d851296fb899e87394c358bba20c436a74e5c238))
+- **tinacms:** add media manager UI ([4f0cf96](https://github.com/tinacms/tinacms/commit/4f0cf9631afe68d0b5204aabb66085a2a2291b24))
+- **tinacms:** added a default MediaManager screen ([dc33594](https://github.com/tinacms/tinacms/commit/dc33594c227afd884d5078af53f9340277734bca))
+- **tinacms:** an alerts map can be provided to TinaCMS constructor ([fcee016](https://github.com/tinacms/tinacms/commit/fcee01604bb6ae08b126c7903c8d90601adf92e5))
+- **tinacms:** apis can define their own event-to-alerts map ([24a9305](https://github.com/tinacms/tinacms/commit/24a93059a0abe7930a4f301fa447de162d19fd5c))
+
 # [0.30.0](https://github.com/tinacms/tinacms/compare/v0.29.0...v0.30.0) (2020-09-10)
 
 ### Bug Fixes

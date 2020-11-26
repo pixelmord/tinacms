@@ -167,7 +167,7 @@ const AddBlockWrapper = styled.div<AddBlockWrapperProps>(p => {
 
   return css`
   position: absolute;
-  z-index: calc(var(--tina-z-index-2) - ${p.index !== undefined ? p.index : 0});
+  z-index: calc(var(--tina-z-index-3) - ${p.index !== undefined ? p.index : 0});
 
 
   ${p.position === 'top' &&
@@ -205,7 +205,7 @@ const AddBlockWrapper = styled.div<AddBlockWrapperProps>(p => {
 
   ${p.isOpen &&
     css`
-      z-index: calc(1 + var(--tina-z-index-2) - ${p.index ? p.index : 0});
+      z-index: calc(1 + var(--tina-z-index-3) - ${p.index ? p.index : 0});
     `}
 `
 })
@@ -254,6 +254,9 @@ const BlocksMenu = styled.div<AddMenuProps>`
 `
 
 const BlockOption = styled.button`
+  all: unset;
+  box-sizing: border-box;
+  color: var(--tina-color-grey-8);
   font-family: 'Inter', sans-serif;
   position: relative;
   text-align: center;

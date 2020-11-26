@@ -98,7 +98,9 @@ export function BlocksControls({
   const isActive = name === focussedField
   const childIsActive = focussedField.startsWith(name!)
 
-  const handleSetActiveBlock = (event: any) => {
+  const focusOnBlock = (event: any) => {
+    event.stopPropagation()
+    event.preventDefault()
     if (
       blockMenuRef.current?.contains(event.target) ||
       blockMoveUpRef.current?.contains(event.target) ||
@@ -106,8 +108,6 @@ export function BlocksControls({
     ) {
       return
     }
-    event.stopPropagation()
-    event.preventDefault()
     setFocussedField(name!)
   }
 
@@ -133,67 +133,74 @@ export function BlocksControls({
           <StyledFocusRing
             ref={provider.innerRef}
             active={focusRing && isActive}
-            onClick={handleSetActiveBlock}
+            onClick={focusOnBlock}
             offset={offset}
             borderRadius={borderRadius}
             {...provider.draggableProps}
             disableHover={focusRing === false ? true : childIsActive}
             disableChildren={!isActive && !childIsActive}
           >
-            {withinLimit(max) && (
-              <AddBlockMenuWrapper active={isActive}>
-                <AddBlockMenu
-                  addBlock={block => insert(index, block)}
-                  blocks={blocks}
-                  index={index}
-                  offset={offset}
-                  position={addBeforePosition}
-                />
-                <AddBlockMenu
-                  addBlock={block => insert(index + 1, block)}
-                  blocks={blocks}
-                  index={index}
-                  offset={offset}
-                  position={addAfterPosition}
-                />
-              </AddBlockMenuWrapper>
-            )}
-            <BlockMenuWrapper
-              offset={offset}
-              ref={blockMenuRef}
-              index={index}
-              active={isActive}
-              inset={insetControls}
-            >
-              <BlockMenu>
-                <BlockAction
-                  ref={blockMoveUpRef}
-                  onClick={moveBlockUp}
-                  disabled={isFirst}
-                >
-                  {direction === 'vertical' && <ChevronUpIcon />}
-                  {direction === 'horizontal' && <ChevronLeftIcon />}
-                </BlockAction>
-                <BlockAction
-                  ref={blockMoveDownRef}
-                  onClick={moveBlockDown}
-                  disabled={isLast}
-                >
-                  {direction === 'vertical' && <ChevronDownIcon />}
-                  {direction === 'horizontal' && <ChevronRightIcon />}
-                </BlockAction>
-                <BlockAction {...provider.dragHandleProps}>
-                  {direction === 'vertical' && <ReorderIcon />}
-                  {direction === 'horizontal' && <ReorderRowIcon />}
-                </BlockAction>
-                <InlineSettings fields={template.fields} />
-                {withinLimit(min) && (
-                  <BlockAction onClick={removeBlock}>
-                    <TrashIcon />
-                  </BlockAction>
+            {isActive ? (
+              <>
+                {withinLimit(max) && (
+                  <AddBlockMenuWrapper active={isActive}>
+                    <AddBlockMenu
+                      addBlock={block => insert(index, block)}
+                      blocks={blocks}
+                      index={index}
+                      offset={offset}
+                      position={addBeforePosition}
+                    />
+                    <AddBlockMenu
+                      addBlock={block => insert(index + 1, block)}
+                      blocks={blocks}
+                      index={index}
+                      offset={offset}
+                      position={addAfterPosition}
+                    />
+                  </AddBlockMenuWrapper>
                 )}
-              </BlockMenu>
-            </BlockMenuWrapper>
+                <BlockMenuWrapper
+                  offset={offset}
+                  ref={blockMenuRef}
+                  index={index}
+                  active={isActive}
+                  inset={insetControls}
+                >
+                  <BlockMenu>
+                    <BlockAction
+                      ref={blockMoveUpRef}
+                      onClick={moveBlockUp}
+                      disabled={isFirst}
+                    >
+                      {direction === 'vertical' && <ChevronUpIcon />}
+                      {direction === 'horizontal' && <ChevronLeftIcon />}
+                    </BlockAction>
+                    <BlockAction
+                      ref={blockMoveDownRef}
+                      onClick={moveBlockDown}
+                      disabled={isLast}
+                    >
+                      {direction === 'vertical' && <ChevronDownIcon />}
+                      {direction === 'horizontal' && <ChevronRightIcon />}
+                    </BlockAction>
+                    <BlockAction {...provider.dragHandleProps}>
+                      {direction === 'vertical' && <ReorderIcon />}
+                      {direction === 'horizontal' && <ReorderRowIcon />}
+                    </BlockAction>
+                    <InlineSettings fields={template.fields} />
+                    {withinLimit(min) && (
+                      <BlockAction onClick={removeBlock}>
+                        <TrashIcon />
+                      </BlockAction>
+                    )}
+                  </BlockMenu>
+                </BlockMenuWrapper>
+              </>
+            ) : (
+              // dummy element; react-beautiful-dnd complains when dragHandleProps isn't present
+              <div {...provider.dragHandleProps}></div>
+            )}
             {children}
           </StyledFocusRing>
         )

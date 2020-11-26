@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+**Note:** Version bump only for package @tinacms/git-client
+
+
+
+
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+**Note:** Version bump only for package @tinacms/git-client
+
+
+
+
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+**Note:** Version bump only for package @tinacms/git-client
+
+
+
+
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+
+### Features
+
+* **@tinacms/git-client:** GitMediaStore implements delete ([6b6efdb](https://github.com/tinacms/tinacms/commit/6b6efdbb8bd1c72cd5a6045bb832c19b6c105f3c))
+* **@tinacms/git-client:** the GitMediaStore implements list ([26ceadd](https://github.com/tinacms/tinacms/commit/26ceadd7b67fe0abf0085f647fad454e274f4c5b))
+
+
+
+
+
 # [0.29.0](https://github.com/tinacms/tinacms/compare/v0.28.0...v0.29.0) (2020-08-25)
 
 **Note:** Version bump only for package @tinacms/git-client

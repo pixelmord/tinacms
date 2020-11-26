@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/tinacms/tinacms/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+**Note:** Version bump only for package react-tinacms-inline
+
+
+
+
+
+# [0.33.0](https://github.com/tinacms/tinacms/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **react-tinacms-inline:** better control InlineBlocks rerenders ([611fc70](https://github.com/tinacms/tinacms/commit/611fc70eaba95168db9531f35d283d69dfe56e05))
+* **react-tinacms-inline:** stop focus event bubble before returning early ([698e0b5](https://github.com/tinacms/tinacms/commit/698e0b5d1573087068ed5517d22a7f3cede5ac74))
+
+
+### Features
+
+* **react-tinacms-inline:** Export SettingsModal ([ba5e03e](https://github.com/tinacms/tinacms/commit/ba5e03e8403d52b0b9ffcc068af7e3cbf845cfa6))
+* **react-tinacms-inline:** FocusRing accepts render-child ([e1cc04c](https://github.com/tinacms/tinacms/commit/e1cc04c76898a800e2a792ba210e305bddbc9771))
+* **react-tinacms-inline:** InlineGroup field names are relative ([57bcb3d](https://github.com/tinacms/tinacms/commit/57bcb3d2f70deec3f96437054d678b2551a559e6))
+
+
+### Performance Improvements
+
+* **react-tinacms-inline:** don't render block menu when block not active ([2b26b8a](https://github.com/tinacms/tinacms/commit/2b26b8a5c7a64b64e10f4faebc8712c0832218a5))
+
+
+
+
+
+# [0.32.0](https://github.com/tinacms/tinacms/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **react-tinacms-inline:** empty inline img to click/drag ([c879441](https://github.com/tinacms/tinacms/commit/c879441541a955d3e3d33c4f30c35a2b8cfbf92a))
+* **react-tinacms-inline:** field focus is not lost when editing settings ([8a078b4](https://github.com/tinacms/tinacms/commit/8a078b4f9b5138c7821f859511cc53d618b93366))
+* **react-tinacms-inline:** inline image field allows media to be deleted from media manager ([352284f](https://github.com/tinacms/tinacms/commit/352284f8fdeb13b145ce54d0b3359a7076353284))
+* **react-tinacms-inline:** some fields were mis-handling focus ([5d7318c](https://github.com/tinacms/tinacms/commit/5d7318c0ccdfe89709f2e8bc7d1c8f8d3a115019)), closes [#1516](https://github.com/tinacms/tinacms/issues/1516)
+* **react-tinacms-inline:** uploadDir passes formValues ([99de78a](https://github.com/tinacms/tinacms/commit/99de78acd9768358fc2b43ba0f52d63b07db9988))
+
+
+### Features
+
+* **react-tinacms-inline:** block components are given their name ([8d42e9a](https://github.com/tinacms/tinacms/commit/8d42e9abbfb98bd50bd7dc1913fa3d8bc799972c)), closes [#1536](https://github.com/tinacms/tinacms/issues/1536)
+
+
+
+
+
+# [0.31.0](https://github.com/tinacms/tinacms/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+
+### Features
+
+* **react-tinacms-inline:** adds inline image style extension ([f4348e5](https://github.com/tinacms/tinacms/commit/f4348e583f0ec794b8b45483cd8456ab4e9160a2))
+* **react-tinacms-inline:** image children only receive src ([9b48aa6](https://github.com/tinacms/tinacms/commit/9b48aa68874fdfe9ce567f47b5945a9365c888aa))
+* **react-tinacms-inline:** inline img accepts alt ([e576838](https://github.com/tinacms/tinacms/commit/e5768385f878418353fa1c108632290e4c3f8c1a))
+* **react-tinacms-inline:** InlineField accepts parse and format functions ([8d62b8e](https://github.com/tinacms/tinacms/commit/8d62b8e65cae511118c16a4f4427672b0812bcd9))
+* **react-tinacms-inline:** InlineImage parse accepts a Media rather then a string ([3be3e16](https://github.com/tinacms/tinacms/commit/3be3e166b83e1ba60a041898c9b0165310cbb623))
+* **react-tinacms-inline:** InlineImageField#previewSrc matches MediaStore API ([aeb0cd5](https://github.com/tinacms/tinacms/commit/aeb0cd5f5a717f035074e1406556b621c5e874f3))
+* **react-tinacms-inline:** uploadDir on InlineImageField is now optional ([4259804](https://github.com/tinacms/tinacms/commit/425980478046e50620ce2b6441b4db68d1e0223c))
+
+
+
+
+
 # [0.29.0](https://github.com/tinacms/tinacms/compare/v0.28.0...v0.29.0) (2020-08-25)
 
 

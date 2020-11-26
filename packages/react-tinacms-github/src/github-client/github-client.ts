@@ -20,7 +20,7 @@ import Cookies from 'js-cookie'
 import { authenticate } from './authenticate'
 import { EventsToAlerts } from '@tinacms/alerts'
 export * from './authenticate'
-import { CHECKOUT_BRANCH, COMMIT, CREATE_BRANCH } from '../events'
+import { CHECKOUT_BRANCH, COMMIT, CREATE_BRANCH, ERROR } from '../events'
 import { b64EncodeUnicode } from './base64'
 import { EventBus } from '@tinacms/core'
 
@@ -31,6 +31,7 @@ export interface GithubClientOptions {
   baseRepoFullName: string
   baseBranch?: string
   authScope?: AuthScope
+  defaultCommitMessage?: string
 }
 
 export interface Branch {
@@ -62,6 +63,10 @@ export class GithubClient {
       level: 'info',
       message: 'Switched to branch ' + event.branchName,
     }),
+    [ERROR]: event => ({
+      level: 'error',
+      message: event.message,
+    }),
   }
 
   proxy: string
@@ -70,6 +75,7 @@ export class GithubClient {
   clientId: string
   authCallbackRoute: string
   authScope: AuthScope
+  defaultCommitMessage: string
 
   constructor({
     proxy,
@@ -78,6 +84,7 @@ export class GithubClient {
     baseRepoFullName,
     baseBranch = 'master',
     authScope = 'public_repo',
+    defaultCommitMessage = 'Update from TinaCMS',
   }: GithubClientOptions) {
     this.proxy = proxy
     this.baseRepoFullName = baseRepoFullName
@@ -85,6 +92,7 @@ export class GithubClient {
     this.clientId = clientId
     this.authCallbackRoute = authCallbackRoute
     this.authScope = authScope
+    this.defaultCommitMessage = defaultCommitMessage
     this.validate()
   }
 
@@ -151,7 +159,7 @@ export class GithubClient {
       url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
       method: 'POST',
       data: {
-        title: title ? title : 'Update from TinaCMS',
+        title: title ? title : this.defaultCommitMessage,
         body: body ? body : 'Please pull these awesome changes in!',
         head: `${workingRepoFullName.split('/')[0]}:${headBranch}`,
         base: this.baseBranch,
@@ -195,10 +203,15 @@ export class GithubClient {
    * @deprecated Call GithubClient#checkout instead
    */
   setWorkingBranch(branch: string) {
+    if (this.branchName === branch) return
+
     this.setCookie(GithubClient.HEAD_BRANCH_COOKIE_KEY, branch)
     this.events.dispatch({
       type: CHECKOUT_BRANCH,
       branchName: branch,
+    })
+    this.events.dispatch({
+      type: 'unstable:reload-form-data',
     })
   }
 
@@ -282,7 +295,7 @@ export class GithubClient {
     filePath: string,
     sha: string,
     fileContents: string,
-    commitMessage: string = 'Update from TinaCMS'
+    commitMessage: string = this.defaultCommitMessage
   ) {
     const repo = this.workingRepoFullName
     const branch = this.branchName
@@ -328,7 +341,7 @@ export class GithubClient {
   async githubFileApi(
     path: string,
     fileContents: string,
-    commitMessage: string = 'Update from TinaCMS',
+    commitMessage: string = this.defaultCommitMessage,
     encoded: boolean = false,
     method: 'PUT' | 'DELETE'
   ) {
@@ -349,7 +362,7 @@ export class GithubClient {
         message: commitMessage,
         content: encoded ? fileContents : b64EncodeUnicode(fileContents),
         branch: branch,
-        sha,
+        sha: sha || '',
       },
     })
   }
@@ -357,7 +370,7 @@ export class GithubClient {
   async upload(
     path: string,
     fileContents: string,
-    commitMessage: string = 'Update from TinaCMS',
+    commitMessage: string = this.defaultCommitMessage,
     encoded: boolean = false
   ) {
     return this.githubFileApi(path, fileContents, commitMessage, encoded, 'PUT')
@@ -367,7 +380,14 @@ export class GithubClient {
     path: string,
     commitMessage: string = `Deleted ${path} using TinaCMS`
   ) {
-    return this.githubFileApi(path, '', commitMessage, false, 'DELETE')
+    try {
+      return await this.githubFileApi(path, '', commitMessage, false, 'DELETE')
+    } catch (e) {
+      this.events.dispatch({
+        type: ERROR,
+        message: `Failed to delete: ${e.message}`,
+      })
+    }
   }
 
   protected async req(data: any) {

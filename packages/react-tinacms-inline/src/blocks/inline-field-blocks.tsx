@@ -19,7 +19,6 @@ limitations under the License.
 import * as React from 'react'
 import { Block } from './block'
 import { InlineField } from '../inline-field'
-import { useState } from 'react'
 import { AddBlockMenu } from './add-block-menu'
 import { useInlineForm } from '../inline-form'
 import styled from 'styled-components'
@@ -50,6 +49,7 @@ export interface InlineBlocksProps {
 export interface BlocksContainerProps {
   innerRef: React.Ref<any>
   className?: string
+  children?: React.ReactNode
 }
 
 const DefaultContainer = (props: BlocksContainerProps) => {
@@ -65,8 +65,6 @@ export interface InlineBlocksActions {
   blocks: {
     [key: string]: Block
   }
-  activeBlock: number | null
-  setActiveBlock: any
   direction: 'vertical' | 'horizontal'
   min?: number
   max?: number
@@ -97,7 +95,6 @@ export function InlineBlocks({
   components = {},
 }: InlineBlocksProps) {
   const cms = useCMS()
-  const [activeBlock, setActiveBlock] = useState(-1)
   const { setFocussedField } = useInlineForm()
 
   return (
@@ -107,8 +104,6 @@ export function InlineBlocks({
         const allData: { _template: string }[] = input.value || []
 
         const move = (from: number, to: number) => {
-          const movement = to - from
-          setActiveBlock(activeBlock => activeBlock + movement)
           form.mutators.move(name, from, to)
           setFocussedField(`${name}.${to}`)
         }
@@ -147,8 +142,6 @@ export function InlineBlocks({
                       remove,
                       blocks,
                       count: allData.length,
-                      activeBlock,
-                      setActiveBlock,
                       direction,
                       min,
                       max,
@@ -219,10 +212,20 @@ export function InlineBlock({
   index,
   itemProps,
 }: InlineBlockProps) {
-  return (
-    <InlineFieldContext.Provider value={{ name, ...block }}>
-      <block.Component data={data} index={index} {...itemProps} />
-    </InlineFieldContext.Provider>
+  return React.useMemo(
+    () => (
+      <InlineFieldContext.Provider value={{ name, ...block }}>
+        <block.Component data={data} name={name} index={index} {...itemProps} />
+      </InlineFieldContext.Provider>
+    ),
+    [
+      name,
+      // h/t Dan Abramov https://twitter.com/dan_abramov/status/1104414272753487872?s=20
+      JSON.stringify(data),
+      block,
+      index,
+      JSON.stringify(itemProps),
+    ]
   )
 }
 

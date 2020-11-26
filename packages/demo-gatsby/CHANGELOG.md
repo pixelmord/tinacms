@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.33.0...v0.34.0) (2020-11-23)
+
+**Note:** Version bump only for package demo-gatsby
+
+
+
+
+
+# [0.33.0](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.32.1...v0.33.0) (2020-11-16)
+
+**Note:** Version bump only for package demo-gatsby
+
+
+
+
+
+## [0.32.1](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.32.0...v0.32.1) (2020-10-29)
+
+**Note:** Version bump only for package demo-gatsby
+
+
+
+
+
+# [0.32.0](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.31.0...v0.32.0) (2020-10-20)
+
+**Note:** Version bump only for package demo-gatsby
+
+
+
+
+
+# [0.31.0](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.30.0...v0.31.0) (2020-10-05)
+
+**Note:** Version bump only for package demo-gatsby
+
+
+
+
+
 # [0.30.0](https://github.com/gatsbyjs/gatsby-starter-blog/compare/v0.29.0...v0.30.0) (2020-09-10)
 
 **Note:** Version bump only for package demo-gatsby

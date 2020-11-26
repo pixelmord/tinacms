@@ -35,7 +35,7 @@ export interface StyledFocusRingProps
 
 export interface FocusRingProps {
   name?: string
-  children: React.ReactChild | React.ReactChild[]
+  children: React.ReactNode | ((active: boolean) => React.ReactNode)
   options?: boolean | FocusRingOptions
 }
 
@@ -56,10 +56,10 @@ export const FocusRing = ({ name, options, children }: FocusRingProps) => {
   }, [name, options, focussedField])
 
   const updateFocusedField = (event: React.MouseEvent<HTMLElement>) => {
-    if (active || !name) return
-    setFocussedField(name)
     event.stopPropagation()
     event.preventDefault()
+    if (active || !name) return
+    setFocussedField(name)
   }
 
   return (
@@ -72,7 +72,7 @@ export const FocusRing = ({ name, options, children }: FocusRingProps) => {
       disableHover={!options || childActive}
       disableChildren={nestedFocus && !active && !childActive}
     >
-      {children}
+      {typeof children === 'function' ? children(active) : children}
     </StyledFocusRing>
   )
 }
@@ -83,6 +83,8 @@ export const StyledFocusRing = styled.div<StyledFocusRingProps>(p => {
   return css`
     position: relative;
     width: 100%;
+    height: 100%;
+    min-height: var(--tina-font-size-0);
 
     ${!p.disableHover &&
       css`
@@ -120,6 +122,7 @@ export const StyledFocusRing = styled.div<StyledFocusRingProps>(p => {
       pointer-events: none;
       transition: all var(--tina-timing-medium) ease-out;
       box-shadow: var(--tina-shadow-big);
+      z-index: var(--tina-z-index-2);
     }
 
     ${p.active &&

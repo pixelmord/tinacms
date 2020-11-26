@@ -43,6 +43,7 @@ import {
   DateFieldPlaceholder,
 } from './plugins/fields/markdown'
 import { MediaManagerScreenPlugin } from './plugins/screens/media-manager-screen'
+import { BaseMediaPaginator } from './components/media/pagination'
 
 const DEFAULT_FIELDS = [
   TextFieldPlugin,
@@ -81,7 +82,17 @@ export class TinaCMS extends CMS {
   }: TinaCMSConfig = {}) {
     super(config)
 
-    this.alerts.setMap(alerts)
+    this.alerts.setMap({
+      'media:upload:failure': () => ({
+        level: 'error',
+        message: 'Failed to upload file.',
+      }),
+      'media:delete:failure': () => ({
+        level: 'error',
+        message: 'Failed to delete file.',
+      }),
+      ...alerts,
+    })
 
     if (sidebar) {
       const sidebarConfig = typeof sidebar === 'object' ? sidebar : undefined
@@ -99,6 +110,9 @@ export class TinaCMS extends CMS {
       }
     })
     this.plugins.add(MediaManagerScreenPlugin)
+    if (!this.plugins.getType('media:ui').find('paginator')) {
+      this.plugins.add(BaseMediaPaginator)
+    }
   }
 
   get alerts() {
